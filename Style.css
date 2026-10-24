@@ -1,0 +1,194 @@
+/* ==========================================================
+   LINKTREE — style.css
+   ========================================================== */
+
+/* ---------- 1. Variabel warna (mode terang) ---------- */
+:root {
+  --bg: #EEF2E3;
+  --ink: #1F2A1C;
+  --muted: #5B6657;
+  --card: #FFFFFF;
+  --line: #1F2A1C;
+  --accent: #F2B8D0;   /* warna avatar */
+  --pop: #C8E86B;      /* warna tombol utama */
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- 2. Variabel warna (mode gelap) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #172015;
+    --ink: #EEF2E3;
+    --muted: #A5B09F;
+    --card: #223020;
+    --line: #EEF2E3;
+    --accent: #8A4B65;
+    --pop: #a02a2a;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #172015;
+  --ink: #EEF2E3;
+  --muted: #A5B09F;
+  --card: #223020;
+  --line: #EEF2E3;
+  --accent: #8A4B65;
+  --pop: #7FA02A;
+}
+
+/* ---------- 3. Reset & dasar ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+main {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+}
+
+/* ---------- 4. Background GIF ---------- */
+/* Ganti "WOF.gif" dengan nama file GIF kamu */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url('background.gif') center / cover no-repeat #1F2A1C;   /* ← UBAH: warna cadangan jadi gelap */
+}
+
+/* Lapisan gelap tipis biar teks tetap kebaca */
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+}
+
+/* ---------- 5. Profil ---------- */
+.avatar {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 2.5px px 0 var(--line);
+  overflow: hidden;                               /* ← TAMBAH: biar foto kepotong bulat */
+  font: 800 40px 'Bricolage Grotesque', sans-serif;
+}
+
+/* ← TAMBAH: aturan buat foto profil */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font: 800 30px/1.1 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -.02em;
+}
+
+.bio {
+  margin: 0 0 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Teks di atas GIF dibuat putih */
+h1,
+.bio,
+footer {
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.bio,
+footer {
+  opacity: .85;
+}
+
+/* ---------- 6. Tombol link ---------- */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.link {
+  display: block;
+  padding: 16px 20px;
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--line);
+  font: 500 17px 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: transform .12s, box-shadow .12s;
+}
+
+.link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--line);
+}
+
+.link:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+.link:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Deskripsi kecil di bawah judul link */
+.link small {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Tombol utama (yang disorot) */
+.link.main {
+  background: var(--pop);
+}
+
+.link.main small {
+  color: var(--ink);
+  opacity: .7;
+}
+
+/* ---------- 7. Footer ---------- */
+footer {
+  margin-top: 36px;
+  font-size: 13px;
+}
