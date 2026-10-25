@@ -220,8 +220,37 @@ footer {
 /* ---------- 8. Hormati pengaturan "kurangi animasi" ---------- */
 @media (prefers-reduced-motion: reduce) {
   .link,
-  .avatar {
+  .avatar,
+  .marquee__track {
     animation: none;
     transition: none;
   }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  overflow: hidden;
+  margin: 18px 0 22px;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: geser 15s linear infinite;
+}
+
+.marquee__track span {
+  padding-right: 5px; 
+  white-space: nowrap;
+  font: 500 15px 'DM Sans', sans-serif;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: running;
+}
+
+@keyframes geser {
+  to { transform: translateX(-50%); }
 }
